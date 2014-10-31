@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h3 class="modal-title">Cadastrar Parciente</h3>
+</div>	
+<div class="modal-body">
+	<fs-form-for model="parciente">
+		<fs-input as="text" name="nomeCompleto" required="" label="Nome Completo" placeholder="Digite o nome completo"></fs-input>
+		<fs-input as="email" name="email" required="required" label="Email" placeholder="Digite o email" ></fs-input>
+		 <fs-input as="fs-date" name="dataNascimento" required="" label="Data do nascimento" placeholder="Digite a data de nascimento"></fs-input>
+		<fs-input as="text" fs-validate='confirmation'  name="_id" required="" label="CPF" placeholder="Digite o numero do cpf"></fs-input> 
+		<fs-input as="text" name="Celular" required="" label="Celular" placeholder="Digite o numero do celular"></fs-input> 
+		<fs-input as="text" name="telefone" required="" label="Telefone" placeholder="Digite o numero do telefone"></fs-input>
+		<div class="row"> 
+		</div>
+		<div class="row">
+			<div class="col-xs-3">
+				<!-- <div ng-dropdown-multiselect="" options="doencas" selected-model="parciente.doencas"></div> -->
+			</div>
+			<div class="col-xs-3">
+					<div fs-radio="" items="situacoes" ng-disabled="disabled" ng-model="parciente.situacao">
+					{{item.label}}
+					</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" ng-click="close()">Fechar</button>
+			<button ng-disabled="form.$invalid"  class="btn btn-success btn-sm" ng-click="salvar(parciente)">Salvar</button>
+		</div>
+	</fs-form-for>
+</div>

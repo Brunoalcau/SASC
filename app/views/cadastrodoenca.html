@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h3 class="modal-title">Cadastrar de doença</h3>
+</div>	
+<div class="modal-body">
+	<fs-form-for model="doenca">
+		
+		<fs-input as="text" name="nomeDoenca" required="" label="Nome da doença" placeholder="Digite o nome da doença"></fs-input>
+		<fs-input as="text" name="descricao" required="" label="Descrição" placeholder="Digite a descrição da doença"></fs-input>
+		<div class="row">
+			<div class="col-xs-3">
+					<div fs-radio="" items="situacoes" ng-disabled="disabled" ng-model="parciente.situacao">
+					{{item.label}}
+					</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" ng-click="close()">Fechar</button>
+			<button ng-disabled="form.$invalid"  class="btn btn-success btn-sm" ng-click="salvar(parciente)">Salvar</button>
+		</div>
+
+	</fs-form-for>
+</div>
