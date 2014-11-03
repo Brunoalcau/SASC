@@ -8,7 +8,10 @@
  * Controller of the sascApp
  */
 var CadastrodoencaCtrl = angular.module('sascApp')
-  .controller('CadastrodoencaCtrl', function ($scope,$modalInstance,$rootScope,doc) {
+  .controller('CadastrodoencaCtrl', function ($scope,$modalInstance,$rootScope,doc,$routeParams) {
+    
+    $scope.id = $routeParams.id;
+
     $scope.close = function(){
   		$modalInstance.close();
   	}

@@ -34,6 +34,9 @@ var DoencaCtrl = angular.module('sascApp')
 	  function error(response){
 
 	  }
+	  $scope.deletar = function (idDoc) {
+	  	console.log(idDoc);	
+	  }
 	  $scope.getListDoenca();
   });
 

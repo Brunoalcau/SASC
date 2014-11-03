@@ -30,12 +30,12 @@
                 <td st-ratio="10">{{row.value.descricao}}</td>     
                 <td st-ratio="10">{{row.value.situacao}}</td>     
                 <td st-ratio="20">
-                    <a href="">
+                    <a ng-click="deletar(row.value._id)">
                         <i class="glyphicon glyphicon-remove"></i>
                     </a>
                 </td>
                 <td>
-                    <a href="">
+                    <a href="#/cadastroDoenca/{{row.value._id}}">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
                 </td>

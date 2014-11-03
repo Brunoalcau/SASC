@@ -24,7 +24,8 @@ angular
     'formstamp',
     'ui.bootstrap',
     'angularjs-dropdown-multiselect',
-    'underscore'
+    'underscore',
+    'CornerCouch'
   ])
   .config(function ($routeProvider,$datepickerProvider) {
     $routeProvider
@@ -47,6 +48,10 @@ angular
       .when('/doenca', {
         templateUrl: 'views/doenca.html',
         controller: 'DoencaCtrl'
+      })
+      .when('/cadastrodoenca:id', {
+        templateUrl: 'views/cadastrodoenca.html',
+        controller: 'CadastrodoencaCtrl'
       })
       .when('/cadastrodoenca', {
         templateUrl: 'views/cadastrodoenca.html',
