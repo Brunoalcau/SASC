@@ -9,14 +9,7 @@
  */
 angular.module('sascApp')
   .service('doc',[ '$http','cornercouch', function doc($http,cornercouch) {
-    var db = cornercouch().getDB('sasc'),
-    function documentoCouchDb (noDoc) {
-        if(noDoc){
-          db.newDoc(noDoc);
-        } else{
-          db.newDoc();
-        }
-    };
+    var db = cornercouch().getDB('sasc');
     return {
   		cadastrar : function(parciente){
   			return $http.post('sasc',parciente);
@@ -29,9 +22,11 @@ angular.module('sascApp')
       },
       deleteDoc : function (doc) {
         
-      },getDoc : function(doc){
-        return documentoCouchDb().load(doc.id);
+      },getDoc : function(id){
+        return db.newDoc().load(id);
+      },
+      removeDoc : function(id){
+          db.newDoc().load(id).remove();
       }
   	}
-        }
   }]);

@@ -8,20 +8,22 @@
  * Controller of the sascApp
  */
 var CadastrodoencaCtrl = angular.module('sascApp')
-  .controller('CadastrodoencaCtrl', function ($scope,$modalInstance,$rootScope,doc,$routeParams) {
-    
-    $scope.id = $routeParams.id;
+  .controller('CadastrodoencaCtrl', function ($scope,$modalInstance,$rootScope,doc,idDoc) {
+
+    getDoencaEdit();
 
     $scope.close = function(){
   		$modalInstance.close();
   	}
 
   	function listaDoenca(){
-		$rootScope.$broadcast('atualizarListaDoenca');
-	}
+	 	  $rootScope.$broadcast('atualizarListaDoenca');
+	  }
 
   	$scope.salvar = function(){
   		$scope.doenca.tipoDocumento = 'D';
+      console.log($scope.doenca);
+      // $scope.doenca.situacao = $scope.doenca.situacao.id; 
   		doc.cadastrar($scope.doenca).then(sucesso,error);
   	}
 
@@ -33,5 +35,13 @@ var CadastrodoencaCtrl = angular.module('sascApp')
   	function error(){
 
   	}
+
+    function getDoencaEdit(){
+      if(idDoc){
+         doc.getDoc(idDoc).then(function(res){
+          $scope.doenca = res.data;
+        });
+      }
+    }
   });
 CadastrodoencaCtrl.$injector = ['$scope','$modalInstance','$rootScope','doc']

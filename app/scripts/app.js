@@ -37,13 +37,13 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
-      .when('/cadastroParciente', {
-        templateUrl: 'views/cadastroparciente.html',
-        controller: 'CadastroparcienteCtrl'
+      .when('/cadastroPaciente', {
+        templateUrl: 'views/cadastropaciente.html',
+        controller: 'CadastropacienteCtrl'
       })
-      .when('/listarParciente', {
-        templateUrl: 'views/listarparciente.html',
-        controller: 'ListarparcienteCtrl'
+      .when('/listarPaciente', {
+        templateUrl: 'views/listarpaciente.html',
+        controller: 'ListarpacienteCtrl'
       })
       .when('/doenca', {
         templateUrl: 'views/doenca.html',
@@ -57,9 +57,9 @@ angular
         templateUrl: 'views/cadastrodoenca.html',
         controller: 'CadastrodoencaCtrl'
       })
-      .when('/adcionar-doenca-parciente', {
-        templateUrl: 'views/adcionar-doenca-parciente.html',
-        controller: 'AdcionarDoencaParcienteCtrl'
+      .when('/adcionar-doenca-paciente', {
+        templateUrl: 'views/adcionar-doenca-paciente.html',
+        controller: 'AdcionarDoencaPacienteCtrl'
       })
       .otherwise({
         redirectTo: '/'

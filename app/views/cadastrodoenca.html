@@ -8,7 +8,7 @@
 		<fs-input as="text" name="descricao" required="" label="Descrição" placeholder="Digite a descrição da doença"></fs-input>
 		<div class="row">
 			<div class="col-xs-3">
-					<div fs-radio="" items="situacoes" ng-disabled="disabled" ng-model="parciente.situacao">
+					<div fs-radio="" items="situacoes" ng-model="doenca.situacao" required="">
 					{{item.label}}
 					</div>
 			</div>

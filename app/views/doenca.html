@@ -35,7 +35,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href="#/cadastroDoenca/{{row.value._id}}">
+                    <a href="" ng-click="openDialog(row.value._id)">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
                 </td>
@@ -43,7 +43,8 @@
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="5" class="text-center">
+                <td colspan="5" class="text-cen
+                ter">
                     <div  st-items-by-page="20" st-pagination=""></div>
                 </td>
             </tr>

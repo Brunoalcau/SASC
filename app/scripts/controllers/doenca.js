@@ -8,7 +8,7 @@
  * Controller of the sascApp
  */
 var DoencaCtrl = angular.module('sascApp')
-  .controller('DoencaCtrl', function ($scope,$modal,doc) {
+  .controller('DoencaCtrl', function ($scope,$modal,doc,$rootScope) {
     var opts = {
         templateUrl: 'views/cadastrodoenca.html',
         controller: 'CadastrodoencaCtrl'
@@ -20,8 +20,16 @@ var DoencaCtrl = angular.module('sascApp')
 
 
   //TODO: Verificar como criar directiva para facilitar criacao de modal
-	  $scope.openDialog = function(){
-	  	var dial = $modal.open(opts);
+	  $scope.openDialog = function(id){
+	  	var dial = $modal.open({
+       		 templateUrl: 'views/cadastrodoenca.html',
+        	 controller: 'CadastrodoencaCtrl',
+        	 resolve : {
+        	 	idDoc : function(){
+        	 		return id;
+        	 		}
+        	 	}
+      		});
 	  };
 
 	  $scope.getListDoenca = function(){
@@ -34,8 +42,11 @@ var DoencaCtrl = angular.module('sascApp')
 	  function error(response){
 
 	  }
+
 	  $scope.deletar = function (idDoc) {
-	  	console.log(idDoc);	
+	  	doc.getDoc(idDoc).then(function(res){
+
+	  	});
 	  }
 	  $scope.getListDoenca();
   });
