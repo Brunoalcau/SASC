@@ -19,7 +19,7 @@ module.exports = ddoc;
 ddoc.views.doencas = {
   map:function(doc){
     if(doc.tipoDocumento ==='D'){
-      emit(doc,doc);
+      emit(doc._id,doc);
     }
   },
 };

@@ -14,6 +14,9 @@ angular.module('sascApp')
   		cadastrar : function(parciente){
   			return $http.post('sasc',parciente);
   		},
+      atualizar : function(data){
+        return $http.put('sasc',data);
+      },
   		getList : function(tipo){
   			return $http.get('/sasc/_design/app/_view/'+tipo);
   		},
@@ -27,6 +30,9 @@ angular.module('sascApp')
       },
       removeDoc : function(id){
           db.newDoc().load(id).remove();
+      },
+      getDoencasDoPaciente:function(keys){
+        return $http.get('sasc/_design/app/_view/doencas?keys='+keys);
       }
   	}
   }]);

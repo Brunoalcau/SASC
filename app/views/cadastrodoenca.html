@@ -3,20 +3,24 @@
 </div>	
 <div class="modal-body">
 	<fs-form-for model="doenca">
-		
 		<fs-input as="text" name="nomeDoenca" required="" label="Nome da doença" placeholder="Digite o nome da doença"></fs-input>
 		<fs-input as="text" name="descricao" required="" label="Descrição" placeholder="Digite a descrição da doença"></fs-input>
 		<div class="row">
-			<div class="col-xs-3">
-					<div fs-radio="" items="situacoes" ng-model="doenca.situacao" required="">
-					{{item.label}}
-					</div>
+			<div class="btn-group col-xs-4">
+				<label required="" class="btn btn-success" ng-model="doenca.situacao" btn-radio="true">
+					Ativado
+				</label>
+				<label  required="" class="btn btn-danger" ng-model="doenca.situacao" btn-radio="false">
+					Desativado
+				</label>
 			</div>
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-default" ng-click="close()">Fechar</button>
 			<button ng-disabled="form.$invalid"  class="btn btn-success btn-sm" ng-click="salvar(parciente)">Salvar</button>
 		</div>
-
+		    <button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="am-flip-x" ng-options="icon.value as icon.label for icon in icons" bs-select>
+      Action <span class="caret"></span>
+    </button>
 	</fs-form-for>
 </div>

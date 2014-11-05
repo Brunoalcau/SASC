@@ -26,9 +26,9 @@
             </thead>
             <tbody>
             <tr ng-repeat="row in doencas |filter:descricao">
-                <td st-ratio="20">{{row.value.nomeDoenca}}</td>
+                <td st-ratio="20">{{row.value.nomeDoenca }}</td>
                 <td st-ratio="10">{{row.value.descricao}}</td>     
-                <td st-ratio="10">{{row.value.situacao}}</td>     
+                <td st-ratio="10">{{row.value.situacao | status }}</td>     
                 <td st-ratio="20">
                     <a ng-click="deletar(row.value._id)">
                         <i class="glyphicon glyphicon-remove"></i>
