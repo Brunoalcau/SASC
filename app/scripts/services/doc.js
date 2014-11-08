@@ -19,7 +19,7 @@ angular.module('sascApp')
       },
   		getList : function(tipo){
   			return $http.get('/sasc/_design/app/_view/'+tipo);
-  		},
+  		},  
       getGrupoDoencas : function(){
         return $http.get('/sasc/_design/doenca/_view/grupodoencas');
       },

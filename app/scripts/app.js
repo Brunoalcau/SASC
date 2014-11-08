@@ -61,6 +61,14 @@ angular
         templateUrl: 'views/adcionar-doenca-paciente.html',
         controller: 'AdcionarDoencaPacienteCtrl'
       })
+      .when('/campanha', {
+        templateUrl: 'views/campanha.html',
+        controller: 'CampanhaCtrl'
+      })
+      .when('/cadastroCampanha', {
+        templateUrl: 'views/cadastrocampanha.html',
+        controller: 'CadastrocampanhaCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
