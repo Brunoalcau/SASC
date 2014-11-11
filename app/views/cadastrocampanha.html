@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h3 class="modal-title">Cadastrar de campanha</h3>
+</div>	
+<div class="modal-body">
+	<fs-form-for model="campanha">
+		<fs-input as="text" name="nome" required="" label="Nome da campanha" placeholder="Digite o nome da campanha"></fs-input>
+		<fs-input as="text" name="descricao" required="" label="Descrição" placeholder="Digite a descrição da doença"></fs-input>
+		<fs-input as="fs-date" name="dataInicio" required="" label="Data do Inicio" placeholder="Digite a data do inico da camapanha"></fs-input>
+		<fs-input as="fs-date" name="dataFim" required="" label="Data do Fim" placeholder="Digite a data do fim da camapanha"></fs-input>
+		<div class="row">
+		<label class="col-sm-2 control-label">Nome da campanha</label>
+			<div class="btn-group col-xs-4">
+
+				<select class="form-control" ng-model="campanha.doenca" ng-options="item.id as item.value.nomeDoenca for item in doencas">
+				   <option value="">Todos</option>
+				</select>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" ng-click="close()">Fechar</button>
+			<button ng-disabled="form.$invalid"  class="btn btn-success btn-sm" ng-click="salvar()">Salvar</button>
+		</div>
+	</fs-form-for>
+</div>

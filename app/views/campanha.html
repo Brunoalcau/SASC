@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-xs-3">
+        <button class="btn btn-success btn-sm" 
+                ng-click="openDialog()">
+        	<i class="glyphicon glyphicon-plus"></i>
+            </button>
+    </div>
+    <div class="col-xs-9">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class=" glyphicon glyphicon-search"></i>
+            </span>
+            <input class="form-control" type="search" ng-model="descricao" placeholder="Pesquisar campanha" />
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <table st-table="displayed" class="table table-striped">
+            <thead>
+            <tr>
+                <th st-ratio="20" st-sort="nomeDoenca">Nome</th>
+                <th st-ratio="20" st-sort="descricao">Descrição</th>
+                <th st-ratio="10" st-sort="situacao">Situação</th>
+                <th st-ratio="10" st-sort="situacao">Doença</th>
+                <th st-ratio="20"></th>
+                <th st-ratio="20"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in doencas |filter:descricao">
+                <td st-ratio="20">{{row.value.nomeDoenca }}</td>
+                <td st-ratio="10">{{row.value.descricao}}</td>     
+                <td st-ratio="10">{{row.value.situacao | status }}</td> 
+                <td st-ratio="10">{{row.value.doenca}}</td> 
+                <td st-ratio="20">
+                    <a ng-click="deletar(row.value._id)">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="" ng-click="openDialog(row.value._id)">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="5" class="text-cen
+                ter">
+                    <div  st-items-by-page="20" st-pagination=""></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
