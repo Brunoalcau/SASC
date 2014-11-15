@@ -12,7 +12,7 @@ var CadastrocampanhaCtrl = angular.module('sascApp')
 	$scope.salvar = function(){
 		$scope.campanha.situacao = 'NOVO';
 		$scope.campanha.tipoDocumento = 'C';
-		doc.cadastrar($scope.campanha);
+		 doc.cadastrar($scope.campanha);
 	}
 	function listarDoencasNoDowndownList(){
 		function successCallBackListaDoenca(res){

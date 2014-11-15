@@ -8,7 +8,7 @@
  * Controller of the sascApp
  */
 angular.module('sascApp')
-  .controller('CampanhaCtrl', function ($scope,$modal) {
+  .controller('CampanhaCtrl', function ($scope,$modal,doc) {
       $scope.openDialog = function(id){
 	  	var dial = $modal.open({
        		 templateUrl: 'views/cadastrocampanha.html',
@@ -19,5 +19,18 @@ angular.module('sascApp')
         	 		}
         	 	}
       		});
-	  };
+		};
+
+
+		$scope.criarTabelaDeListaDeCampanha = function(){
+	  		function success(response){
+	  			$scope.campanhas = response.data.rows;
+	  		}
+			function error(response){
+
+			}
+
+  			doc.getList('campanhas').then(success,error);
+	  	}
+	  	$scope.criarTabelaDeListaDeCampanha();
   });

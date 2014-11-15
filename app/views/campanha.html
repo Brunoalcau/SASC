@@ -19,18 +19,18 @@
             <tr>
                 <th st-ratio="20" st-sort="nomeDoenca">Nome</th>
                 <th st-ratio="20" st-sort="descricao">Descrição</th>
-                <th st-ratio="10" st-sort="situacao">Situação</th>
-                <th st-ratio="10" st-sort="situacao">Doença</th>
+                <th st-ratio="10" st-sort="situacao">Data inicial</th>
+                <th st-ratio="10" st-sort="situacao">Data finals</th>
                 <th st-ratio="20"></th>
                 <th st-ratio="20"></th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="row in doencas |filter:descricao">
-                <td st-ratio="20">{{row.value.nomeDoenca }}</td>
+            <tr ng-repeat="row in campanhas |filter:descricao">
+                <td st-ratio="20">{{row.value.nome }}</td>
                 <td st-ratio="10">{{row.value.descricao}}</td>     
-                <td st-ratio="10">{{row.value.situacao | status }}</td> 
-                <td st-ratio="10">{{row.value.doenca}}</td> 
+                <td st-ratio="10">{{row.value.dataInicio | date:'dd-MM-yyyy'}}</td> 
+                <td st-ratio="10">{{row.value.dataFim | date:'dd-MM-yyyy'}}</td> 
                 <td st-ratio="20">
                     <a ng-click="deletar(row.value._id)">
                         <i class="glyphicon glyphicon-remove"></i>

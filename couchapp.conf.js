@@ -16,6 +16,14 @@ var couchapp = require('couchapp'),
 
 module.exports = ddoc;
 
+ddoc.views.campanhas = {
+  map:function(doc){
+    if(doc.tipoDocumento ==='C'){
+      emit(doc._id,doc);
+    }
+  },
+};
+
 ddoc.views.doencas = {
   map:function(doc){
     if(doc.tipoDocumento ==='D'){
@@ -29,6 +37,13 @@ ddoc.views.parcientes = {
     if(doc.tipoDocumento ==='P'){
       emit(doc.nomeCompleto,doc);
     } 
+  }
+}
+ddoc.views.campanhaativadas = {
+  map: function(doc){
+    if(doc.tipoDocumento==='C' && doc.situacao ==='NOVO'){
+      emit(doc._id);
+    }
   }
 }
 couchapp.loadAttachments(ddoc, path.join(__dirname, 'app'));

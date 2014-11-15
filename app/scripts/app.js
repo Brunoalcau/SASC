@@ -73,8 +73,9 @@ angular
         redirectTo: '/'
       });
 
-      angular.extend($datepickerProvider.defaults,{
-        dateFormat:'dd/MM/yyyy',
-        startWeek:1
-      });
+      // angular.extend($datepickerProvider.defaults,{
+      //   dateFormat:'dd/MM/yyyy',
+      //   startWeek:1
+      // });
+      // $scope.format = 'dd/MM/yyyy';
   });
