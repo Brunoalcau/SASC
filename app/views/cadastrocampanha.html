@@ -8,6 +8,13 @@
 		<fs-input as="fs-date" name="dataInicio" required="" label="Data do Inicio" placeholder="Digite a data do inico da camapanha"></fs-input>
 		<fs-input as="fs-date" name="dataFim" required="" label="Data do Fim" placeholder="Digite a data do fim da camapanha"></fs-input>
 		<div class="row">
+		<label class="col-sm-2 control-label">Messagem para o paciente</label>
+			<div class="btn-group col-xs-4">
+
+				<textarea ng-model="campanha.mensagem"></textarea>
+			</div>
+		</div>
+		<div class="row">
 		<label class="col-sm-2 control-label">Nome da campanha</label>
 			<div class="btn-group col-xs-4">
 

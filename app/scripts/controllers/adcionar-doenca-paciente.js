@@ -20,7 +20,7 @@ var AdcionarDoencaPacienteCtrl = angular.module('sascApp')
     function retirarDoencasQuePacientePossui(){
         _.each($scope.doencasDoPaciente,function(itemDoencaDoParciente){
            removerOneItemOfArray($scope.doencas,itemDoencaDoParciente); 
-        });
+        }); 
     }
 
 

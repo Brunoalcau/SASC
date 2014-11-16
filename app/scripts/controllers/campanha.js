@@ -20,7 +20,13 @@ angular.module('sascApp')
         	 	}
       		});
 		};
-
+		$scope.$on('atualizarListaCampanha',function(){
+			$scope.criarTabelaDeListaDeCampanha();
+		});
+		
+		function listaDoenca(){
+	 	  $rootScope.$broadcast('atualizarListaDoenca');
+	  	}
 
 		$scope.criarTabelaDeListaDeCampanha = function(){
 	  		function success(response){
