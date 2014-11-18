@@ -1,4 +1,5 @@
 <div class="row">
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
     <div class="col-xs-3">
         <button class="btn btn-success btn-sm" 
                 ng-click="openDialog()">
@@ -10,7 +11,7 @@
             <span class="input-group-addon">
                 <i class=" glyphicon glyphicon-search"></i>
             </span>
-            <input class="form-control" type="search" ng-model="descricao" placeholder="Pesquisar parciente" />
+            <input class="form-control" type="search" ng-model="descricao" placeholder="Pesquisar doença" />
         </div>
     </div>
     <div class="col-xs-12">

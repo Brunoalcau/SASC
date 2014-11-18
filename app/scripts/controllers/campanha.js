@@ -9,19 +9,30 @@
  */
 angular.module('sascApp')
   .controller('CampanhaCtrl', function ($scope,$modal,doc) {
-      $scope.openDialog = function(id){
+      
+  	  $scope.alerts = [];
+
+  	  function addListAlerts(){
+  	  	$scope.alerts.push({
+  	  		type:'success',
+  	  		msg:'Campanha salva com sucesso!'
+  	  	});	
+  	  }
+
+	  $scope.openDialog = function(id){
 	  	var dial = $modal.open({
-       		 templateUrl: 'views/cadastrocampanha.html',
-        	 controller: 'CadastrocampanhaCtrl',
-        	 resolve : {
-        	 	idDoc : function(){
-        	 		return id;
-        	 		}
-        	 	}
-      		});
-		};
+	   		 templateUrl: 'views/cadastrocampanha.html',
+	    	 controller: 'CadastrocampanhaCtrl',
+	    	 resolve : {
+	    	 	idDoc : function(){
+	    	 		return id;
+	    	 		}
+	    	 	}
+	  		});
+	   };
 		$scope.$on('atualizarListaCampanha',function(){
 			$scope.criarTabelaDeListaDeCampanha();
+			addListAlerts();
 		});
 		
 		function listaDoenca(){

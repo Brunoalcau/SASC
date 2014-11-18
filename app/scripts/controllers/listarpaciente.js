@@ -12,33 +12,47 @@ var ListarpacienteCtrl = angular.module('sascApp')
 
    	$scope.modal = {title: 'Cadastro de Parciente!'};
     
-	  $scope.openDialog = function(id){
-      	var dial = $modal.open({
-           templateUrl: 'views/cadastropaciente.html',
-           controller: 'CadastropacienteCtrl',
-           resolve : {
-            idDoc : function(){
-              return id;
-            }
-           }
-          });
-      };
+	  $scope.alerts = [];
 
-      $scope.openDialogDoencas = function(id){
-        var dial = $modal.open({
-           templateUrl: 'views/adcionar-doenca-paciente.html',
-           controller: 'AdcionarDoencaPacienteCtrl',
-           size:'lg',
-           resolve : {
-            idDoc : function(){
-              return id;
-            }
-           }
-          });
-      };
+  function addAlertSuccess(){
+    // $scope.alerts = [];
+    $scope.alerts.push({
+      type:'success',msg:'Paciente salvo com sucesso!'
+    });
+  }
+
+  $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+  };
+
+  $scope.openDialog = function(id){
+    	var dial = $modal.open({
+         templateUrl: 'views/cadastropaciente.html',
+         controller: 'CadastropacienteCtrl',
+         resolve : {
+          idDoc : function(){
+            return id;
+          }
+         }
+        });
+    };
+
+  $scope.openDialogDoencas = function(id){
+    var dial = $modal.open({
+       templateUrl: 'views/adcionar-doenca-paciente.html',
+       controller: 'AdcionarDoencaPacienteCtrl',
+       size:'lg',
+       resolve : {
+        idDoc : function(){
+          return id;
+        }
+       }
+      });
+    };
 
   	$scope.$on('atualizarListaParciente',function(){
-  		
+      $scope.montarTabelaParciente();
+      addAlertSuccess();
   	});
 
   	$scope.montarTabelaParciente = function(){

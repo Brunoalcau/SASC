@@ -21,6 +21,10 @@ var CadastropacienteCtrl = angular.module('sascApp')
 		  $rootScope.$broadcast('atualizarLista');
 	  }
 
+    $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+    };
+
   	$scope.salvar = function(){
   		$scope.paciente.tipoDocumento = 'P';
       $scope.paciente.doencas = [];
@@ -30,6 +34,7 @@ var CadastropacienteCtrl = angular.module('sascApp')
 
   	function success(){
   		$scope.close();
+      addListaParciente();
   		$scope.parciente = null;
   	}
 
@@ -37,7 +42,7 @@ var CadastropacienteCtrl = angular.module('sascApp')
   		console.log(response);
   	}
 
-  	$scope.addListaParciente = function(){
+  	function addListaParciente(){
   		$rootScope.$broadcast('atualizarListaParciente');
   	}
 

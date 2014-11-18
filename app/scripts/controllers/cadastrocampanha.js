@@ -9,8 +9,9 @@
  */
 var CadastrocampanhaCtrl = angular.module('sascApp')
   .controller('CadastrocampanhaCtrl', function ($scope,doc,$rootScope,$modalInstance,idDoc) {
+	
+
 	$scope.salvar = function(){
-		
 		var success = function(){
 			listaCampanha();
 			$scope.close();

@@ -9,6 +9,9 @@
  */
 var DoencaCtrl = angular.module('sascApp')
   .controller('DoencaCtrl', function ($scope,$modal,doc,$rootScope) {
+    $scope.alerts = [];
+
+
     var opts = {
         templateUrl: 'views/cadastrodoenca.html',
         controller: 'CadastrodoencaCtrl'
@@ -16,7 +19,18 @@ var DoencaCtrl = angular.module('sascApp')
 
     $scope.$on('atualizarListaDoenca',function(){
 		$scope.getListDoenca();
+		addListAlerts();
   	});
+
+  	function addListAlerts(){
+  		$scope.alerts.push({
+  			type:'success',
+  			msg:'Doença salva com sucesso!'
+  		});
+  	}
+  	$scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+  	};
 
 
   //TODO: Verificar como criar directiva para facilitar criacao de modal
