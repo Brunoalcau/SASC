@@ -1,5 +1,5 @@
 'use strict';
-
+//TODO Bruno Cau: Fazer alteracao pois ta com bug
 /**
  * @ngdoc function
  * @name sascApp.controller:AdcionarDoencaParcienteCtrl
@@ -8,109 +8,54 @@
  * Controller of the sascApp
  */
 var AdcionarDoencaPacienteCtrl = angular.module('sascApp')
-  .controller('AdcionarDoencaPacienteCtrl', function ($scope,doc,_,$modalInstance,idDoc) {
-    
-    $scope.inicializarCarregamentoDadosDoPaciente = function(id){
-        getPaciente(id).then(successParcienteCallBack)
-        .then(getDoencasDoParciente)
-        .then(listarTodasDoencas)
-        .then(retirarDoencasQuePacientePossui);
-    };
-
-    function retirarDoencasQuePacientePossui(){
-        _.each($scope.doencasDoPaciente,function(itemDoencaDoParciente){
-           removerOneItemOfArray($scope.doencas,itemDoencaDoParciente); 
-        }); 
-    }
-
-
-    function retirarUltimoCaractere(str){
-        return str.substring(0,(str.length - 1))
-    }
-
-    function successParcienteCallBack(res){
-        $scope.paciente = res.data;
-    }
-    
-    function getDoencasDoParciente(){
-        function getSuccessDoencasDoPaciente(responser){
-            $scope.doencasDoPaciente = responser.data.rows;
-        }
-        return doc.getDoencasDoPaciente(formataQueryDoenca()).then(getSuccessDoencasDoPaciente);
-    }
-
-    function listarTodasDoencas(){
-        function success(res){
-            $scope.doencas = res.data.rows;
+    .controller('AdcionarDoencaPacienteCtrl', function($scope, doc, _, $modalInstance, idDoc) {
+        $scope.obter = {
+            listarTodasDoencas:[],
+            listarDoencaDoPaciente:[],
+            diferenciaListaTodosDoencasEDoencasDoPaciente: function(){
+                var difference = _.difference($scope.obter.listarTodasDoencas,$scope.obter.listarDoencaDoPaciente);    
+                // var keys = _.groupBy($scope.obter.listarTodasDoencas,'_id'),
+                //     grurpkeys = _.groupBy($scope.obter.listarDoencaDoPaciente,'_id');
+                // var teste = _.difference(keys,grurpkeys);
+                console.log(difference);
+                // console.log(grurpkeys);
+            }
         };
-        function error (res){
-            console.log(res);
-        };
-        return doc.getList('doencas').then(success,error);
-    };
 
-    function  getDoencas(res){
-        $scope.doencas = res.data.rows;
-    }
+        function montarListaDeDoencas(){
+            function adicionarNaListaTodasDoencas(doenca){
+                $scope.obter.listarTodasDoencas.push(doenca);
+            }
 
-    function getPaciente(id){
-        return doc.getDoc(id);
-    }
+            function recuperarObjetoDoencaDaLista(response){
+               $scope.obter.listarTodasDoencas = _.pluck(response.data.rows,'value');
+            }
 
-    $scope.addDoencaPacienteRemoveListaDoencas = function(doenca){
-        addListaDoencaPaciente(doenca);
-        unificarDoencas($scope.doencas,$scope.doencasDoPaciente);
-        $scope.paciente.doencas.push(doenca.id);
-        salvar();
-    }
-
-    function salvar(){
-        doc.cadastrar($scope.paciente).then(function(){
-            getPaciente($scope.paciente._id).then(successParcienteCallBack);
-        });;   
-    }
-
-    $scope.removerListaPacienteAddListDoenca = function(item){
-        addListaDoencas(item);
-        removerOneItemOfArray($scope.doencasDoPaciente,item);    
-        removerOneItemOfArray($scope.paciente.doencas,item.id);    
-        salvar();
-    }
-
-    function addListaDoencaPaciente(item){
-        if(item.value && item.value.tipoDocumento ==='D'){
-            $scope.doencasDoPaciente.push(item);
+            return doc.getDocPorTipoDocumentoAndSituacao('D',true).then(recuperarObjetoDoencaDaLista);
         }
-    }
 
-    function addListaDoencas(item){
-        if(item.value && item.value.tipoDocumento ==='D'){
-            $scope.doencas.push(item);
+        function montarListaDasDoencasDoPaciente(){
+            function adcionarDoenca(response){
+                $scope.obter.listarDoencaDoPaciente.push(response.data);
+            }
+            //TODO: modificar o nome da function
+            function percorreDoencaDoPaciente(response){
+                _.each(response.data.doencas,function(idDoenca){
+                    recuperarDoencaPaciente(idDoenca);
+                });
+            }
+
+            function recuperarDoencaPaciente(idDoenca){
+                doc.getDoc(idDoenca).then(adcionarDoenca);
+            }
+
+           return doc.getDoc(idDoc).then(percorreDoencaDoPaciente);
         }
-    }
-    
-    //TODO:Verificar um modo para colocar como um metodo de um array
-    function removerOneItemOfArray(array,item){
-        array.splice(_.indexOf(array,item),1);
-    }
 
-    function unificarDoencas(pacienteDoenca, doencas){
-        $scope.doencas =  _.difference(pacienteDoenca,doencas);
-    }
-    //TODO:retirar do controller
-    function formataQueryDoenca(){
-        var doencas ="" ;
-        _.each($scope.paciente.doencas,function(res){
-            doencas += '"'+res+'",'
-        });
-        return '['+ retirarUltimoCaractere(doencas) +']';
-    }
-
-    $scope.close = function(){
-        $modalInstance.close();
-    }
-
-    $scope.inicializarCarregamentoDadosDoPaciente(idDoc);
-
-  });
-AdcionarDoencaPacienteCtrl.$injector = ['$scope','doc','_','$modalInstance'];
+        function iniciarListas(){
+            montarListaDasDoencasDoPaciente()
+            .then(montarListaDeDoencas)
+            .then($scope.obter.diferenciaListaTodosDoencasEDoencasDoPaciente);
+        }
+        iniciarListas();
+    });

@@ -25,7 +25,7 @@
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-default" ng-click="close()">Fechar</button>
-			<button ng-disabled="form.$invalid"  class="btn btn-success btn-sm" ng-click="salvar()">Salvar</button>
+			<button ng-disabled="form.$invalid" ng-show="campanha.situacao === 'NOVO'"  class="btn btn-success btn-sm"  ng-click="salvar()">Salvar</button>
 		</div>
 	</fs-form-for>
 </div>

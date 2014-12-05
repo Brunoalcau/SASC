@@ -8,46 +8,34 @@
  * Controller of the sascApp
  */
 angular.module('sascApp')
-  .controller('CampanhaCtrl', function ($scope,$modal,doc) {
-      
-  	  $scope.alerts = [];
+	.controller('CampanhaCtrl', function($scope, $modal, doc, modals) {
 
-  	  function addListAlerts(){
-  	  	$scope.alerts.push({
-  	  		type:'success',
-  	  		msg:'Campanha salva com sucesso!'
-  	  	});	
-  	  }
+		$scope.alerts = [];
 
-	  $scope.openDialog = function(id){
-	  	var dial = $modal.open({
-	   		 templateUrl: 'views/cadastrocampanha.html',
-	    	 controller: 'CadastrocampanhaCtrl',
-	    	 resolve : {
-	    	 	idDoc : function(){
-	    	 		return id;
-	    	 		}
-	    	 	}
-	  		});
-	   };
-		$scope.$on('atualizarListaCampanha',function(){
+		function addListAlerts() {
+			$scope.alerts.push({
+				type: 'success',
+				msg: 'Campanha salva com sucesso!'
+			});
+		}
+
+		$scope.openDialog = function(id) {
+			modals.campanhaDialog(id);
+		};
+		$scope.$on('atualizarListaCampanha', function() {
 			$scope.criarTabelaDeListaDeCampanha();
 			addListAlerts();
 		});
-		
-		function listaDoenca(){
-	 	  $rootScope.$broadcast('atualizarListaDoenca');
-	  	}
 
-		$scope.criarTabelaDeListaDeCampanha = function(){
-	  		function success(response){
-	  			$scope.campanhas = response.data.rows;
-	  		}
-			function error(response){
-
+		$scope.criarTabelaDeListaDeCampanha = function() {
+			function success(response) {
+				$scope.campanhas = response.data.rows;
 			}
 
-  			doc.getList('campanhas').then(success,error);
-	  	}
-	  	$scope.criarTabelaDeListaDeCampanha();
-  });
+			function error() {
+
+			}
+			doc.getList('campanhas').then(success, error);
+		};
+		$scope.criarTabelaDeListaDeCampanha();
+	});

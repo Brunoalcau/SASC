@@ -6,12 +6,21 @@
         	<i class="glyphicon glyphicon-plus"></i>
             </button>
     </div>
-    <div class="col-xs-9">
+    <div class="col-xs-7">
         <div class="input-group">
             <span class="input-group-addon">
                 <i class=" glyphicon glyphicon-search"></i>
             </span>
             <input class="form-control" type="search" ng-model="descricao" placeholder="Pesquisar doença" />
+        </div>
+    </div>
+    <div class="col-xs-2">
+        <div class="input-group">
+            <select class="form-control" ng-model="situacao">
+                <option value="">Todos</option>
+                <option value="true">Ativo</option>
+                <option value="false">Desativo</option>
+            </select>
         </div>
     </div>
     <div class="col-xs-12">
@@ -26,10 +35,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="row in doencas |filter:descricao">
+            <tr ng-repeat="row in doencas |filter:descricao |filter:situacao:descricao">
                 <td st-ratio="20">{{row.value.nomeDoenca }}</td>
                 <td st-ratio="10">{{row.value.descricao}}</td>     
-                <td st-ratio="10">{{row.value.situacao | status }}</td>     
+                <td st-ratio="10">{{row.value.situacao | status  }}</td>     
                 <td st-ratio="20">
                     <a ng-click="deletar(row.value._id)">
                         <i class="glyphicon glyphicon-remove"></i>

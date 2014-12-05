@@ -7,62 +7,48 @@
  * # DoencaCtrl
  * Controller of the sascApp
  */
-var DoencaCtrl = angular.module('sascApp')
-  .controller('DoencaCtrl', function ($scope,$modal,doc,$rootScope) {
+angular.module('sascApp')
+  .controller('DoencaCtrl', function($scope, $modal, doc, $rootScope, modals) {
     $scope.alerts = [];
 
 
-    var opts = {
-        templateUrl: 'views/cadastrodoenca.html',
-        controller: 'CadastrodoencaCtrl'
-      };
+    $scope.$on('atualizarListaDoenca', function() {
+      $scope.getListDoenca();
+      addListAlerts();
+    });
 
-    $scope.$on('atualizarListaDoenca',function(){
-		$scope.getListDoenca();
-		addListAlerts();
-  	});
+    function addListAlerts() {
+      $scope.alerts.push({
+        type: 'success',
+        msg: 'Doença salva com sucesso!'
+      });
+    }
 
-  	function addListAlerts(){
-  		$scope.alerts.push({
-  			type:'success',
-  			msg:'Doença salva com sucesso!'
-  		});
-  	}
-  	$scope.closeAlert = function(index) {
+
+    $scope.closeAlert = function(index) {
       $scope.alerts.splice(index, 1);
-  	};
+    };
 
+    $scope.openDialog = function(id) {
+      modals.doencaDialog(id);
+    };
 
-  //TODO: Verificar como criar directiva para facilitar criacao de modal
-	  $scope.openDialog = function(id){
-	  	var dial = $modal.open({
-       		 templateUrl: 'views/cadastrodoenca.html',
-        	 controller: 'CadastrodoencaCtrl',
-        	 resolve : {
-        	 	idDoc : function(){
-        	 		return id;
-        	 		}
-        	 	}
-      		});
-	  };
+    $scope.getListDoenca = function() {
+      doc.getList('doencas').then(success, error);
+    };
 
-	  $scope.getListDoenca = function(){
-	  	doc.getList('doencas').then(success,error);		
-	  }
+    function success(response) {
+      $scope.doencas = response.data.rows;
+    }
 
-	  function success(response){
-	  	$scope.doencas = response.data.rows;
-	  }
-	  function error(response){
+    function error() {
 
-	  }
+    }
 
-	  $scope.deletar = function (idDoc) {
-	  	doc.getDoc(idDoc).then(function(res){
+    $scope.deletar = function(idDoc) {
+      doc.getDoc(idDoc).then(function() {
 
-	  	});
-	  }
-	  $scope.getListDoenca();
+      });
+    };
+    $scope.getListDoenca();
   });
-
- DoencaCtrl.$injector = ['$scope','$modal','doc'];

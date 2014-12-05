@@ -27,7 +27,7 @@ angular
     'underscore',
     'CornerCouch'
   ])
-  .config(function ($routeProvider,$datepickerProvider) {
+  .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -72,10 +72,4 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-
-      // angular.extend($datepickerProvider.defaults,{
-      //   dateFormat:'dd/MM/yyyy',
-      //   startWeek:1
-      // });
-      // $scope.format = 'dd/MM/yyyy';
   });

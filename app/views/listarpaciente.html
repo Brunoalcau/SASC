@@ -6,12 +6,21 @@
         	<i class="glyphicon glyphicon-plus"></i>
             </button>
     </div>
-    <div class="col-xs-9">
+    <div class="col-xs-7">
         <div class="input-group">
             <span class="input-group-addon">
                 <i class=" glyphicon glyphicon-search"></i>
             </span>
             <input class="form-control" type="search" ng-model="nome" placeholder="Pesquisar parciente" />
+        </div>
+    </div>
+    <div class="col-xs-2">
+        <div class="input-group">
+            <select class="form-control" ng-model="situacao">
+                <option value="">Todos</option>
+                <option value="true">Ativo</option>
+                <option value="false">Desativo</option>
+            </select>
         </div>
     </div>
     <div class="col-xs-12">
@@ -28,7 +37,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="row in parcientes |filter:nome">
+            <tr ng-repeat="row in parcientes |filter:situacao:nome">
                 <td st-ratio="10">
                     <a ng-click="openDialogDoencas(row.value._id)" popover-trigger="mouseenter" popover-placement="top" popover="Associar doença ao paciente">
                         <i class="glyphicon glyphicon-th-list"></i>

@@ -39,7 +39,8 @@
                 </td>
                 <td>
                     <a href="" ng-click="openDialog(row.value._id)">
-                        <i class="glyphicon glyphicon-edit"></i>
+                        <i class="glyphicon glyphicon-edit" ng-show="row.value.situacao === 'NOVO'" ></i>
+                        <i class="glyphicon glyphicon glyphicon-eye-open" ng-show="row.value.situacao !== 'NOVO'" ></i>
                     </a>
                 </td>
             </tr>

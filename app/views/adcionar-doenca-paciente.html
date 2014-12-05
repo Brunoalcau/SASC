@@ -11,8 +11,8 @@
 				<label for="pesquisa-doencas">Pesquisar Doenças:</label>
 			    <input class="form-control" id="pesquisa-doencas" type="search" ng-model="nome" placeholder="Pesquisar doença" />
 			 </div>
-			<div class="panel panel-default panel-danger" ng-repeat="item in doencas |filter:nome">
-			  	<div class="panel-heading">{{item.value.nomeDoenca}}
+			<div class="panel panel-default panel-danger" ng-repeat="item in obter.listarTodasDoencasa |filter:nome">
+			  	<div class="panel-heading">{{item.nomeDoenca}}
 		  			<button type="button" ng-click="addDoencaPacienteRemoveListaDoencas(item)" class="btn btn-success btn-xs pull-right">
 		  			<span>
 		  				<i class="glyphicon glyphicon-plus"></i>
@@ -20,7 +20,7 @@
 		  		</button>
 			  	</div>
 			  	<div class="panel-body">
-			    	{{item.value.descricao}}
+			    	{{item.descricao}}
 			  </div>
 			</div>
 			</fieldset>
@@ -32,10 +32,10 @@
 				<label for="pesquisa-doencas">Pesquisar Doenças:</label>
 			    <input class="form-control" id="pesquisa-doencas" type="search" ng-model="nomeDoencaPaciente" placeholder="Pesquisar doença" />
 			 </div>
-	  		<legend>Doenças associadas ao paciente</legend>
-	  		<div class="panel panel-default panel-success" ng-repeat="item in doencasDoPaciente |filter:nomeDoencaPaciente">
+	  		<legend>Doenças do paciente</legend>
+	  		<div class="panel panel-default panel-success" ng-repeat="item in obter.listarDoencaDoPacientea |filter:nomeDoencaPaciente">
 			  	<div class="panel-heading">
-			  		{{item.value.nomeDoenca}}
+			  		{{item.nomeDoenca}}
 			  		<button value.type="button" ng-click="removerListaPacienteAddListDoenca(item)" class="btn btn-danger btn-xs pull-right">
 			  			<span>
 			  				<i class="glyphicon glyphicon-minus"></i>
@@ -43,7 +43,7 @@
 			  		</button>
 			  	</div>
 			  	<div class="panel-body">
-			    	{{item.value.descricao}}
+			    	{{item.descricao}}
 			  </div>
 			</div>
 			</fieldset>

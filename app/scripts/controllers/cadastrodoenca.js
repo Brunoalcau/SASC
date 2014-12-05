@@ -7,41 +7,39 @@
  * # CadastrodoencaCtrl
  * Controller of the sascApp
  */
-var CadastrodoencaCtrl = angular.module('sascApp')
-  .controller('CadastrodoencaCtrl', function ($scope,$modalInstance,$rootScope,doc,idDoc) {
+angular.module('sascApp')
+  .controller('CadastrodoencaCtrl', function($scope, $modalInstance, $rootScope, doc, idDoc) {
 
-    getDoencaEdit();
+    $scope.close = function() {
+      $modalInstance.close();
+    };
 
-    $scope.close = function(){
-  		$modalInstance.close();
-  	}
+    function listaDoenca() {
+      $rootScope.$broadcast('atualizarListaDoenca');
+    }
 
-  	function listaDoenca(){
-	 	  $rootScope.$broadcast('atualizarListaDoenca');
-	  }
+    $scope.salvar = function() {
+      function sucesso() {
+        listaDoenca();
+        $scope.close();
+      }
 
-  	$scope.salvar = function(){
-  		$scope.doenca.tipoDocumento = 'D';
+      function error() {
+
+      }
+      $scope.doenca.tipoDocumento = 'D';
       console.log($scope.doenca);
       // $scope.doenca.situacao = $scope.doenca.situacao.id; 
-  		doc.cadastrar($scope.doenca).then(sucesso,error);
-  	}
+      doc.cadastrar($scope.doenca).then(sucesso, error);
+    };
 
-  	function sucesso(){
-  		listaDoenca();
-  		$scope.close();
-  	}
-
-  	function error(){
-
-  	}
-
-    function getDoencaEdit(){
-      if(idDoc){
-         doc.getDoc(idDoc).then(function(res){
+    function getDoencaEdit() {
+      if (idDoc) {
+        doc.getDoc(idDoc).then(function(res) {
           $scope.doenca = res.data;
         });
       }
     }
+
+    getDoencaEdit();
   });
-CadastrodoencaCtrl.$injector = ['$scope','$modalInstance','$rootScope','doc']

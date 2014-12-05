@@ -9,8 +9,8 @@
  * Filter in the sascApp.
  */
 angular.module('sascApp')
-  .filter('status', function () {
-    return function (status) {
-    	return  status ? 'Ativado' : 'Desativado' ;
-    };
-  });
+	.filter('status', function() {
+		return function(status) {
+			return status ? 'Ativado' : 'Desativado';
+		};
+	});
