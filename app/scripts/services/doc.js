@@ -12,9 +12,12 @@ angular.module('sascApp')
     var db = cornercouch().getDB('sasc');
     return {
       cadastrar: function(parciente) {
-        return $http.post('sasc', parciente);
+        return $http.post('sasc', parciente).then(function(response){ 
+          parciente._rev = response.data.rev;
+        });
       },
       atualizar: function(data) {
+        console.log(data);
         return $http.put('sasc', data);
       },
       getList: function(tipo) {

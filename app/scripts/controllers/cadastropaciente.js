@@ -10,7 +10,11 @@
 angular.module('sascApp')
   .controller('CadastropacienteCtrl', function($scope, $modalInstance, $rootScope, doc, idDoc) {
 
-    $scope.parciente = null;
+    $scope.paciente = {
+      tipoDocumento :'P',
+      doencas : []
+    };
+    
     $scope.dataNascimento = new Date();
     $scope.sexo = [{
       id: 1,
@@ -29,8 +33,6 @@ angular.module('sascApp')
     };
 
     $scope.salvar = function() {
-      $scope.paciente.tipoDocumento = 'P';
-      $scope.paciente.doencas = [];
       doc.cadastrar($scope.paciente).then(success, error);
       $scope.addListaPaciente();
     };

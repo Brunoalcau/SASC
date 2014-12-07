@@ -6,11 +6,12 @@
 		<fs-input as="text" name="nomeCompleto" required="" label="Nome Completo" placeholder="Digite o nome completo"></fs-input>
 		<fs-input as="email" name="email" required="required" label="Email" placeholder="Digite o email" ></fs-input>
 		 <fs-input as="fs-date" name="dataNascimento" required="" label="Data do nascimento" placeholder="Digite a data de nascimento"></fs-input>
-		<fs-input as="text" fs-validate='confirmation' ng-disabled="paciente" name="_id" required="" label="CPF" placeholder="Digite o numero do cpf"></fs-input> 
+		<fs-input as="text" fs-validate='confirmation' name="_id" required="" label="CPF" placeholder="Digite o numero do cpf"></fs-input> 
 		<fs-input as="text" name="celular" required="" label="Celular" placeholder="Digite o numero do celular"></fs-input> 
 		<fs-input as="text" name="telefone" required="" label="Telefone" placeholder="Digite o numero do telefone"></fs-input>
 		<div class="row"> 
 		</div>
+		<p>{{paciente}}</p>
 		<div class="row">
 			<div class="btn-group col-xs-4">
 				<label required="" class="btn btn-success" ng-model="paciente.situacao" btn-radio="true">

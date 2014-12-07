@@ -11,7 +11,7 @@
 				<label for="pesquisa-doencas">Pesquisar Doenças:</label>
 			    <input class="form-control" id="pesquisa-doencas" type="search" ng-model="nome" placeholder="Pesquisar doença" />
 			 </div>
-			<div class="panel panel-default panel-danger" ng-repeat="item in obter.listarTodasDoencasa |filter:nome">
+			<div class="panel panel-default panel-danger" ng-repeat="item in obter.listarDoencaDivergencia |filter:nome">
 			  	<div class="panel-heading">{{item.nomeDoenca}}
 		  			<button type="button" ng-click="addDoencaPacienteRemoveListaDoencas(item)" class="btn btn-success btn-xs pull-right">
 		  			<span>
@@ -33,7 +33,7 @@
 			    <input class="form-control" id="pesquisa-doencas" type="search" ng-model="nomeDoencaPaciente" placeholder="Pesquisar doença" />
 			 </div>
 	  		<legend>Doenças do paciente</legend>
-	  		<div class="panel panel-default panel-success" ng-repeat="item in obter.listarDoencaDoPacientea |filter:nomeDoencaPaciente">
+	  		<div class="panel panel-default panel-success" ng-repeat="item in obter.listarDoencaDoPaciente |filter:nomeDoencaPaciente">
 			  	<div class="panel-heading">
 			  		{{item.nomeDoenca}}
 			  		<button value.type="button" ng-click="removerListaPacienteAddListDoenca(item)" class="btn btn-danger btn-xs pull-right">
