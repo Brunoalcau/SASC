@@ -55,5 +55,6 @@ var ListarpacienteCtrl = angular.module('sascApp')
     }
     $scope.montarTabelaParciente();
 
+
   });
 ListarpacienteCtrl.$injector = ['$scope', '$modal', 'doc'];

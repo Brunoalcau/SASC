@@ -1,22 +1,22 @@
-// 'use strict';
+'use strict';
 
-// describe('Controller: DoencaCtrl', function () {
+describe('Controller: DoencaCtrl', function () {
 
-//   // load the controller's module
-//   beforeEach(module('sascApp'));
+  // load the controller's module
+  beforeEach(module('sascApp'));
 
-//   var DoencaCtrl,
-//     scope;
+  var DoencaCtrl,
+    scope;
 
-//   // Initialize the controller and a mock scope
-//   beforeEach(inject(function ($controller, $rootScope) {
-//     scope = $rootScope.$new();
-//     DoencaCtrl = $controller('DoencaCtrl', {
-//       $scope: scope
-//     });
-//   }));
+  // Initialize the controller and a mock scope
+  beforeEach(inject(function ($controller, $rootScope) {
+    scope = $rootScope.$new();
+    DoencaCtrl = $controller('DoencaCtrl', {
+      $scope: scope
+    });
+  }));
 
-//   it('should attach a list of awesomeThings to the scope', function () {
-//     expect(scope.awesomeThings.length).toBe(3);
-//   });
-// });
+  it('should attach a list of awesomeThings to the scope', function () {
+    expect(scope.awesomeThings.length).toBe(3);
+  });
+});
