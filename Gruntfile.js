@@ -416,6 +416,50 @@ module.exports = function (grunt) {
     grunt.task.run(['serve:' + target]);
   });
 
+  /**
+    grunt deploy-aplication-por-filial -metodo=  -parametro
+  */
+  grunt.registerTask('deploy-aplication-por-filial','fazer o deploy do conferencia loja por filial',function(target){
+  
+
+  var 
+    sql = require('mssql'),
+    exec = require('child_process').exec,
+    done = this.async();
+  ;
+
+
+  var config =  {
+    user : 'SYSCOSMOS',
+    password: 'COSMOS',
+    server: 'andromeda2.pmenos.com.br',
+    database : 'cosmos_v14b'
+  };
+
+    sql.connect(config , function (err) {
+      console.log(err);
+      var request = new sql.Request();
+      request.query('select top 1 fili_Cd_filial from filial',function(err,recordset){
+          console.log('Teste');
+          for (var i = 0; i < recordset.length; i++) {
+            var couchdbDatabaseLoja = concatDatabase(recordset[i].fili_Cd_filial);
+            var comando = criarComandoCouchapp(couchdbDatabaseLoja);
+            exec(comando,function(err,stdout,stderr){
+              done();
+            }); 
+          }
+        });
+      // done();
+      });
+    function criarComandoCouchapp(filial){
+      return 'couchapp push couchapp.conf.js http://localhost:5984/'+filial;
+    }
+
+    function concatDatabase(idFilial){
+      return 'filial-'+idFilial;
+    }
+  });
+
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
@@ -440,7 +484,7 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin'
   ]);
-
+ 
   grunt.registerTask('default', [
     'newer:jshint',
     'test',

@@ -28,10 +28,13 @@
 
 	  	<div class="col-md-6">
 	  		<fieldset>
-	  		<div class="form-group">
-				<label for="pesquisa-doencas">Pesquisar Doenças:</label>
-			    <input class="form-control" id="pesquisa-doencas" type="search" ng-model="nomeDoencaPaciente" placeholder="Pesquisar doença" />
-			 </div>
+	  		<fs-row label="Classificações do CDD: "  class="col-sm-2">
+		      <div class="col-xs-8">
+		        <div ng-class="form-control" ng-change="obterCDDClassificado()" fs-select="" freetext="true" items="classificacoes"  ng-model="classificacao">
+		          {{item.nome}}
+		        </div>
+		      </div>
+	        </fs-row>
 	  		<legend>Doenças do paciente</legend>
 	  		<div class="panel panel-default panel-success" ng-repeat="item in obter.listarDoencaDoPaciente |filter:nomeDoencaPaciente">
 			  	<div class="panel-heading">
